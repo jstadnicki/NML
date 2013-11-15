@@ -27,5 +27,16 @@ namespace NML.Search.Calc
         {
             get { return "c "; }
         }
+
+
+        public bool IsConfigurable
+        {
+            get { return false; }
+        }
+
+        public void Configure()
+        {
+         
+        }
     }
 }

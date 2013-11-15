@@ -15,5 +15,16 @@ namespace NML.Search.Wikipedia
         {
             get { return "w "; }
         }
+
+
+        public bool IsConfigurable
+        {
+            get { return false; }
+        }
+
+        public void Configure()
+        {
+            
+        }
     }
 }

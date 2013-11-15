@@ -82,5 +82,16 @@ namespace NML.Search.Google
             better = better.Remove(0, better.IndexOf("?") + 1);
             return HttpUtility.UrlDecode(HttpUtility.ParseQueryString(better)["q"]);
         }
+
+
+        public bool IsConfigurable
+        {
+            get { return false; }
+        }
+
+        public void Configure()
+        {
+            
+        }
     }
 }

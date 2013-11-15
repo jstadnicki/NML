@@ -5,5 +5,9 @@
         ISearchResult Search(string phrase);
 
         string Prefix { get; }
+
+        bool IsConfigurable { get; }
+        void Configure();
+
     }
 }
