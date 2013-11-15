@@ -1,14 +1,31 @@
 ﻿namespace NML
 {
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using System.Windows;
 
-    using NML.Annotations;
+    using Microsoft.Practices.Unity;
+    using Microsoft.Practices.Unity.Configuration;
 
-    public class MainWindowViewModel : INotifyPropertyChanged
+    using NML.Core.Interfaces;
+
+    public class MainWindowViewModel :INotifyPropertyChanged
     {
+        public MainWindowViewModel()
+        {
+            this.LoadPlugins();
+        }
+
+        private void LoadPlugins()
+        {
+            var unityContainer = new UnityContainer();
+            unityContainer.LoadConfiguration();
+            this.engines = (IList<ISearchEngine>)unityContainer.ResolveAll<ISearchEngine>();
+        }
+
         private string queryText;
+
+        private IList<ISearchEngine> engines;
 
         public string QueryText
         {
@@ -20,7 +37,6 @@
             {
                 this.ShouldTriggerSearch(value);
                 this.queryText = value;
-                this.OnPropertyChanged();
             }
         }
 
@@ -28,13 +44,20 @@
         {
             if (query.Length > 3)
             {
-                MessageBox.Show("go");
+                this.TriggerSearchMechanism(query);
+            }
+        }
+
+        private void TriggerSearchMechanism(string query)
+        {
+            foreach (var engine in this.engines)
+            {
+                var r = engine.Search(query);
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;

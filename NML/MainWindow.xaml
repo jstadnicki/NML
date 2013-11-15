@@ -24,7 +24,8 @@
         <Grid DockPanel.Dock="Top">
             <Label>Seeker</Label>
         </Grid>
-        <TextBox DockPanel.Dock="Top" Style="{StaticResource SearchTextBox}" />
+        <TextBox DockPanel.Dock="Top" Style="{StaticResource SearchTextBox}"
+                 Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Grid>
             <controls:ResultDisplay />
         </Grid>
