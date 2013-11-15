@@ -27,7 +27,7 @@
         <TextBox DockPanel.Dock="Top" Style="{StaticResource SearchTextBox}"
                  Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Grid>
-            <controls:ResultDisplay />
+            <controls:ResultDisplay ItemsSource="{Binding Results}"/>
         </Grid>
     </DockPanel>
 </Window>
