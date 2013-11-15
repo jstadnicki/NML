@@ -3,7 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStyle="ToolWindow" ShowInTaskbar="False"
         Title="MainWindow" Closed="Window_Closed">
-    <Grid>
-        
-    </Grid>
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="SearchTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border BorderBrush="Red" BorderThickness="1">
+                            <Label>Ala ma kota</Label>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Label>Seeker</Label>
+        </Grid>
+        <TextBox DockPanel.Dock="Top" Style="{StaticResource SearchTextBox}" />
+        <Grid>
+            <Label>Placeholder na wyniki</Label>
+        </Grid>
+    </DockPanel>
 </Window>
