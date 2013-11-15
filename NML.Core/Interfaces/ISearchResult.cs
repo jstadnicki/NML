@@ -4,5 +4,6 @@
     {
         string Title { get; }
         string IconUrl { get; }
+        bool HasResult { get; }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using NML.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NML.Core.Results
 {
@@ -11,5 +6,6 @@ namespace NML.Core.Results
     {
         public string Title { get; set; }
         public string IconUrl { get; set; }
+        public abstract bool HasResult { get; }
     }
 }

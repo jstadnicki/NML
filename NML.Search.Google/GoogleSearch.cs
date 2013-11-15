@@ -20,7 +20,6 @@ namespace NML.Search.Google
             var result = wc.DownloadString(string.Format("http://www.google.pl/search?q={0}", HttpUtility.UrlEncode(phrase)));
 
             var googleResults = ParseResult(result);
-
             return new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)));
         }
 
@@ -82,6 +81,17 @@ namespace NML.Search.Google
             var better = HttpUtility.HtmlDecode(badUrl);
             better = better.Remove(0, better.IndexOf("?") + 1);
             return HttpUtility.UrlDecode(HttpUtility.ParseQueryString(better)["q"]);
+        }
+
+
+        public bool IsConfigurable
+        {
+            get { return false; }
+        }
+
+        public void Configure()
+        {
+            
         }
     }
 }
