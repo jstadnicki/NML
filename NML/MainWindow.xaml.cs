@@ -1,5 +1,7 @@
 ﻿namespace NML
 {
+    using System.Windows.Forms;
+
     using NML.Core.Results;
     using NML.Utils;
     using System;
@@ -10,6 +12,8 @@
     public partial class MainWindow : Window
     {
         private KeyboardHandler keyboardHandler;
+
+        private NotifyIcon icon;
 
         private void keyboardHandler_ShortcutPressed(object sender, EventArgs e)
         {
@@ -46,10 +50,10 @@
 
         private void ShowTrayIcon()
         {
-            var ni = new System.Windows.Forms.NotifyIcon();
-            ni.Visible = true;
-            ni.DoubleClick += this.TrayIconDoubleClick;
-            ni.Icon = new System.Drawing.Icon("nml.ico");
+            this.icon = new System.Windows.Forms.NotifyIcon();
+            icon.Visible = true;
+            icon.DoubleClick += this.TrayIconDoubleClick;
+            icon.Icon = new System.Drawing.Icon("nml.ico");
         }
 
         private void TrayIconDoubleClick(object sender, System.EventArgs e)
@@ -70,10 +74,14 @@
 
         protected override void OnClosing(CancelEventArgs e)
         {
-#if !DEBUG
+#if DEBUG
+            base.OnClosing(e);
+            this.icon.Visible = false;
+#else
             e.Cancel = true;
             this.Hide();
 #endif
+
         }
     }
 }
