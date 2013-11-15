@@ -4,14 +4,12 @@
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using System.Threading;
     using System.Threading.Tasks;
 
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.Configuration;
 
     using NML.Core.Interfaces;
-    using NML.Search.Google;
 
     public class MainWindowViewModel :INotifyPropertyChanged
     {
@@ -36,12 +34,9 @@
 
         private void LoadPlugins()
         {
-//            var unityContainer = new UnityContainer();
-//            unityContainer.LoadConfiguration();
-//            this.engines = (IList<ISearchEngine>)unityContainer.ResolveAll<ISearchEngine>();
-
-            this.engines = new List<ISearchEngine>();
-            this.engines.Add(new GoogleSearch());
+            var unityContainer = new UnityContainer();
+            unityContainer.LoadConfiguration();
+            this.engines = new List<ISearchEngine>(unityContainer.ResolveAll<ISearchEngine>());
         }
 
         private string queryText;
