@@ -4,8 +4,6 @@
     using System.Runtime.CompilerServices;
     using System.Windows;
 
-    using NML.Annotations;
-
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private string queryText;
@@ -34,7 +32,6 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
