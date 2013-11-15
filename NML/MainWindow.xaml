@@ -9,7 +9,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border BorderBrush="Red" BorderThickness="1">
-                            <Label>Ala ma kota</Label>
+                            <Label></Label>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -20,7 +20,9 @@
         <Grid DockPanel.Dock="Top">
             <Label>Seeker</Label>
         </Grid>
-        <TextBox DockPanel.Dock="Top" Style="{StaticResource SearchTextBox}" />
+        <TextBox DockPanel.Dock="Top" 
+                 Style="{StaticResource SearchTextBox}" 
+                 Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Grid>
             <Label>Placeholder na wyniki</Label>
         </Grid>
