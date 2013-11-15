@@ -1,17 +1,39 @@
 ﻿namespace NML
 {
+    using NML.Utils;
     using System;
     using System.ComponentModel;
     using System.Windows;
 
     public partial class MainWindow : Window
     {
+        private KeyboardHandler keyboardHandler;
+
+        private void keyboardHandler_ShortcutPressed(object sender, EventArgs e)
+        {
+            if (this.WindowState == System.Windows.WindowState.Minimized)
+                this.WindowState = System.Windows.WindowState.Normal;
+
+            this.Activate();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            keyboardHandler.Dispose();
+        }
+
         public MainWindow()
         {
             this.InitializeComponent();
-            this.ShowTrayIcon();
 
             this.DataContext = new MainWindowViewModel();
+
+            // Registering shortcut
+            keyboardHandler = new KeyboardHandler(this);
+            keyboardHandler.ShortcutPressed += keyboardHandler_ShortcutPressed;
+
+            // Displaying tray icon
+            this.ShowTrayIcon();
         }
 
         private void ShowTrayIcon()
