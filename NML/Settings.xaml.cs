@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NML.Controls
+namespace NML
 {
     /// <summary>
-    /// Interaction logic for ResultDisplay.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class ResultDisplay : ItemsControl
+    public partial class Settings : Window
     {
-        public ResultDisplay()
+        public Settings()
         {
             InitializeComponent();
         }

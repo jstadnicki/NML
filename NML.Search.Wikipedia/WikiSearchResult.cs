@@ -1,6 +1,6 @@
-﻿namespace NML.Search.Google
+﻿namespace NML.Search.Wikipedia
 {
-    internal class GoogleSearchResult
+    internal class WikiSearchResult
     {
         public string Title { get; set; }
         public string Url { get; set; }

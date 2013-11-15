@@ -1,12 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NML", "NML\NML.csproj", "{F216D139-C555-4972-95D5-68E0B4D4EE9F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A77EA9B2-E7C0-4615-8D0E-1537FF322F63} = {A77EA9B2-E7C0-4615-8D0E-1537FF322F63}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NML.Core", "NML.Core\NML.Core.csproj", "{31A51C9A-C410-495F-837C-5A19E5B1B961}"
 EndProject
@@ -36,6 +33,10 @@ Global
 		{A77EA9B2-E7C0-4615-8D0E-1537FF322F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A77EA9B2-E7C0-4615-8D0E-1537FF322F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A77EA9B2-E7C0-4615-8D0E-1537FF322F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9405159F-AAF5-4FCF-8A08-3883CADF88E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9405159F-AAF5-4FCF-8A08-3883CADF88E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9405159F-AAF5-4FCF-8A08-3883CADF88E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9405159F-AAF5-4FCF-8A08-3883CADF88E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD8A8CA4-6844-44A3-AFA0-2C07D48AAE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD8A8CA4-6844-44A3-AFA0-2C07D48AAE26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD8A8CA4-6844-44A3-AFA0-2C07D48AAE26}.Release|Any CPU.ActiveCfg = Release|Any CPU

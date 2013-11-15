@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Windows.Media.Imaging;
 using HtmlAgilityPack;
 using NML.Core.Interfaces;
 using NML.Core.Results;
@@ -13,21 +15,31 @@ namespace NML.Search.Google
 {
     public class GoogleSearch : ISearchEngine
     {
+        public GoogleSearch()
+        {
+            var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Google.Images.goo.png");
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = s;
+            image.EndInit();
+            SearchIcon = image;
+        }
+
         public ISearchResult Search(string phrase)
         {
             var wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
-            var result = wc.DownloadString(string.Format("http://www.google.pl/search?q={0}", HttpUtility.UrlEncode(phrase)));
+            var webResult = wc.DownloadString(string.Format("http://www.google.pl/search?q={0}", HttpUtility.UrlEncode(phrase)));
 
-            var googleResults = ParseResult(result);
-            return new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)));
+            var googleResults = ParseResult(webResult);
+            return new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)), "Google");
         }
 
         public string Prefix
         {
             get
             {
-                return "g ";
+                return "g";
             }
         }
 
@@ -47,7 +59,7 @@ namespace NML.Search.Google
             };
         }
 
-        private IList<GoogleSearchResult> ParseResult(string webResult)
+        private IEnumerable<GoogleSearchResult> ParseResult(string webResult)
         {
             var result = new List<GoogleSearchResult>();
 
@@ -83,7 +95,6 @@ namespace NML.Search.Google
             return HttpUtility.UrlDecode(HttpUtility.ParseQueryString(better)["q"]);
         }
 
-
         public bool IsConfigurable
         {
             get { return false; }
@@ -91,7 +102,8 @@ namespace NML.Search.Google
 
         public void Configure()
         {
-            
         }
+
+        public BitmapImage SearchIcon { get; private set; }
     }
 }

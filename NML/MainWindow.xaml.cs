@@ -7,7 +7,10 @@
     using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.IO;
+    using System.Reflection;
     using System.Windows;
+    using System.Windows.Media.Imaging;
 
     public partial class MainWindow : Window
     {
@@ -33,12 +36,6 @@
             this.InitializeComponent();
 
             this.DataContext = new MainWindowViewModel();
-
-            /*
-            var list = new ObservableCollection<BaseSearchResult>();
-            list.Add(new TextSearchResult { Title = "TextSearchResult", Text = "Text", IconUrl = "icon" });
-            rdSearchResults.ItemsSource = list;
-             */
 
             // Registering shortcut
             keyboardHandler = new KeyboardHandler(this);
