@@ -33,11 +33,6 @@
 
             this.DataContext = new MainWindowViewModel();
 
-            var list = new ObservableCollection<BaseSearchResult>();
-            list.Add(new TextSearchResult { Title = "TextSearchResult", Text = "Text", IconUrl = "icon" });
-            list.Add(new LinkSearchResult { Title = "LinkSearchResult", Text = "Link", IconUrl = "icon", Url = "Url" });
-            rdSearchResults.ItemsSource = list;
-
             // Registering shortcut
             keyboardHandler = new KeyboardHandler(this);
             keyboardHandler.ShortcutPressed += keyboardHandler_ShortcutPressed;

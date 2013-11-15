@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Windows.Media.Imaging;
 using NML.Core;
 using NML.Core.Interfaces;
 using NML.Core.Results;
@@ -11,15 +11,15 @@ namespace NML.Search.Facebook
         public ISearchResult Search(string phrase)
         {
             var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
-              if (token == null)
-              {
-                  FacebookClient fc = new FacebookClient(token);
-                  fc.AppId = FbSettings.AppId;
-                  fc.AppSecret = FbSettings.AppSecret;
+            
+            if (token == null)
+            {
+                var fc = new FacebookClient(token);
+                fc.AppId = FbSettings.AppId;
+                fc.AppSecret = FbSettings.AppSecret;
+            }
 
-        
-              }
-              return new TextSearchResult() { Text = "Please configure your facebook" };
+            return new TextSearchResult { Text = "Please configure your facebook" };
         }
 
         public string Prefix
@@ -38,8 +38,10 @@ namespace NML.Search.Facebook
 
         public void Configure()
         {
-            var s = new NML.Search.Facebook.Configuration();
+            var s = new Configuration();
             s.Show();
         }
+
+        public BitmapImage SearchIcon { get; private set; }
     }
 }

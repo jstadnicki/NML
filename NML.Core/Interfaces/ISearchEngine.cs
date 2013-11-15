@@ -1,4 +1,6 @@
-﻿namespace NML.Core.Interfaces
+﻿using System.Windows.Media.Imaging;
+
+namespace NML.Core.Interfaces
 {
     public interface ISearchEngine
     {
@@ -7,7 +9,9 @@
         string Prefix { get; }
 
         bool IsConfigurable { get; }
+
         void Configure();
 
+        BitmapImage SearchIcon { get; }
     }
 }
