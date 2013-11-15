@@ -71,7 +71,7 @@ namespace NML.Search.Wikipedia
 
         public string Prefix
         {
-            get { return "w "; }
+            get { return "w"; }
         }
 
 

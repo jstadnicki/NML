@@ -37,7 +37,7 @@ namespace NML.Search.Calc
 
         public string Prefix
         {
-            get { return "c "; }
+            get { return "c"; }
         }
 
 

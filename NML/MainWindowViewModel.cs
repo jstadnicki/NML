@@ -1,4 +1,8 @@
-﻿namespace NML
+﻿using System;
+using System.Linq;
+using NML.Core;
+
+namespace NML
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -66,9 +70,24 @@
             }
         }
 
+        private IEnumerable<ISearchEngine> GetFilteredEngines(string query)
+        {
+            var prefixIndex = query.IndexOf(Constants.QueryPrefixSeparator);
+            
+            if (prefixIndex > 0)
+            {
+                var queryPrefix = query.Substring(0, prefixIndex);
+                return engines.Where(e => e.Prefix.Equals(queryPrefix, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            return this.engines;
+        }
+
         private void TriggerSearchMechanism(string query)
         {
-            foreach (var engine in this.engines)
+            var filteredEngines = GetFilteredEngines(query);
+
+            foreach (var engine in filteredEngines)
             {
                 Task.Factory.StartNew(
                     () =>

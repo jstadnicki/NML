@@ -39,7 +39,7 @@ namespace NML.Search.Google
         {
             get
             {
-                return "g ";
+                return "g";
             }
         }
 

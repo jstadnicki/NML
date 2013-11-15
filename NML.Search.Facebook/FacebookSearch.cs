@@ -84,7 +84,7 @@ namespace NML.Search.Facebook
         {
             get
             {
-                return "f ";
+                return "f";
             }
         }
 
