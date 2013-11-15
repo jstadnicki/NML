@@ -106,7 +106,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -124,6 +126,22 @@
     <ProjectReference Include="..\NML.Core\NML.Core.csproj">
       <Project>{31a51c9a-c410-495f-837c-5a19e5b1b961}</Project>
       <Name>NML.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NML.Search.Calc\NML.Search.Calc.csproj">
+      <Project>{cd8a8ca4-6844-44a3-afa0-2c07d48aae26}</Project>
+      <Name>NML.Search.Calc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NML.Search.Facebook\NML.Search.Facebook.csproj">
+      <Project>{414f3ca8-8616-42d5-ab0a-5d9009546175}</Project>
+      <Name>NML.Search.Facebook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NML.Search.Google\NML.Search.Google.csproj">
+      <Project>{a77ea9b2-e7c0-4615-8d0e-1537ff322f63}</Project>
+      <Name>NML.Search.Google</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NML.Search.Wikipedia\NML.Search.Wikipedia.csproj">
+      <Project>{d7fb6e03-74f7-4dca-8423-963f678d7ef8}</Project>
+      <Name>NML.Search.Wikipedia</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
