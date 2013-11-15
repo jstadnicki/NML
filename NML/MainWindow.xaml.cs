@@ -1,7 +1,9 @@
 ﻿namespace NML
 {
+    using NML.Core.Results;
     using NML.Utils;
     using System;
+    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows;
 
@@ -27,6 +29,12 @@
             this.InitializeComponent();
 
             this.DataContext = new MainWindowViewModel();
+
+            /*
+            var list = new ObservableCollection<BaseSearchResult>();
+            list.Add(new TextSearchResult { Title = "TextSearchResult", Text = "Text", IconUrl = "icon" });
+            rdSearchResults.ItemsSource = list;
+             */
 
             // Registering shortcut
             keyboardHandler = new KeyboardHandler(this);

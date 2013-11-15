@@ -115,12 +115,16 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\zoom.png" />
     <Content Include="nml.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <ProjectReference Include="..\NML.Core\NML.Core.csproj">
+      <Project>{31a51c9a-c410-495f-837c-5a19e5b1b961}</Project>
+      <Name>NML.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NML.Core\NML.Core.csproj">

@@ -3,7 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:results="clr-namespace:NML.Core.Results;assembly=NML.Core"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-
+    <ListBox.Resources>
+        <DataTemplate DataType="{x:Type results:LinkSearchResult}">
+            <Border>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding Title}" />
+                    <Label Content="{Binding Text}" />
+                    <Label Content="{Binding Url}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type results:TextSearchResult}">
+            <Border>
+                <StackPanel Orientation="Vertical">                
+                    <Label Content="{Binding Title}" />
+                    <Label Content="{Binding Text}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type results:ListSearchResult}">
+            <Border>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding Title}" />
+                    <ListBox ItemsSource="{Binding ResultList}">
+                        <ListBox.Resources>
+                            <DataTemplate DataType="{x:Type results:SearchResultListItem}">
+                                <Border>
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="{Binding Text}" />
+                                        <Label Content="{Binding Url}" />
+                                        <Label Content="{Binding IconUrl}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.Resources>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </ListBox.Resources>
 </ListBox>

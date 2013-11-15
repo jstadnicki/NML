@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NML.Core.Results
 {
-    public class LinkSearchResult : BaseSearchResult
+    public abstract class BaseSearchResult : ISearchResult
     {
-        public string Text { get; set; }
-        public string Url { get; set; }
+        public string Title { get; set; }
+        public string IconUrl { get; set; }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="Interfaces\ISearchResult.cs" />
     <Compile Include="Interfaces\ISearchResultItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\BaseSearchResult.cs" />
     <Compile Include="Results\LinkSearchResult.cs" />
     <Compile Include="Results\ListSearchResult.cs" />
     <Compile Include="Results\SearchResultListItem.cs" />
