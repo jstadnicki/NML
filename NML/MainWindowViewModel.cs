@@ -15,7 +15,7 @@
 
     public class MainWindowViewModel :INotifyPropertyChanged
     {
-        private ObservableCollection<ISearchResult> Results
+        public ObservableCollection<ISearchResult> Results
         {
             get
             {
@@ -79,7 +79,7 @@
                     () =>
                         {
                             return engine.Search(query);
-                        }).ContinueWith(x => this.Results.Add(x.Result), TaskScheduler.Current);
+                        }).ContinueWith(x => this.Results.Add(x.Result), TaskScheduler.FromCurrentSynchronizationContext());
 
             }
         }
