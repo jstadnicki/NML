@@ -20,7 +20,6 @@ namespace NML.Search.Google
             var result = wc.DownloadString(string.Format("http://www.google.pl/search?q={0}", HttpUtility.UrlEncode(phrase)));
 
             var googleResults = ParseResult(result);
-
             return new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)));
         }
 
