@@ -11,7 +11,7 @@
 
     using NML.Core.Interfaces;
 
-    public class MainWindowViewModel :INotifyPropertyChanged
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<ISearchResult> Results
         {
@@ -68,13 +68,21 @@
 
         private void TriggerSearchMechanism(string query)
         {
+            this.Results.Clear();
             foreach (var engine in this.engines)
             {
                 Task.Factory.StartNew(
                     () =>
-                        {
-                            return engine.Search(query);
-                        }).ContinueWith(x => this.Results.Add(x.Result), TaskScheduler.FromCurrentSynchronizationContext());
+                    {
+                        return engine.Search(query);
+                    }).ContinueWith(
+                            x =>
+                            {
+                                if (x.Result.HasResult)
+                                {
+                                    this.Results.Add(x.Result);
+                                }
+                            }, TaskScheduler.FromCurrentSynchronizationContext());
 
             }
         }
