@@ -18,7 +18,7 @@ namespace NML.Controls
     /// <summary>
     /// Interaction logic for ResultDisplay.xaml
     /// </summary>
-    public partial class ResultDisplay : ListBox
+    public partial class ResultDisplay : ItemsControl
     {
         public ResultDisplay()
         {

@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\zoom.png" />
+    <EmbeddedResource Include="Images\zoom2.png" />
     <Content Include="nml.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
