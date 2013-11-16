@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\LinkDisplay.xaml.cs">
+      <DependentUpon>LinkDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ResultDisplay.xaml.cs">
       <DependentUpon>ResultDisplay.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,10 @@
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\KeyboardHandler.cs" />
+    <Page Include="Controls\LinkDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ResultDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

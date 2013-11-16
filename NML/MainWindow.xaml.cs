@@ -34,9 +34,8 @@
         public MainWindow()
         {
             this.InitializeComponent();
-
             this.DataContext = new MainWindowViewModel();
-
+            
             // Registering shortcut
             keyboardHandler = new KeyboardHandler(this);
             keyboardHandler.ShortcutPressed += keyboardHandler_ShortcutPressed;
