@@ -140,7 +140,7 @@
                                     </Grid.RowDefinitions>
                                     <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Height="48" Source="{Binding IconUrl}" />
                                     <controls:LinkDisplay Grid.Row="0" Grid.Column="1" Text="{Binding Text}" Url="{Binding Url}" />
-                                    <controls:TextDisplay Grid.Row="1" Grid.Column="1" Text="{Binding Caption}" />
+                                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding Caption}" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.Resources>
