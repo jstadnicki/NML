@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Windows.Media.Imaging;
+using NML.Core;
 using NML.Core.Interfaces;
 using NML.Core.Results;
 
@@ -9,6 +10,8 @@ namespace NML.Search.Calc
     {
         public ISearchResult Search(string phrase)
         {
+            phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
+
             var result = new TextSearchResult("Calculator");
 
             if (!string.IsNullOrWhiteSpace(phrase))

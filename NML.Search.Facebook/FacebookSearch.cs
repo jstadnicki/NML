@@ -20,6 +20,8 @@ namespace NML.Search.Facebook
                 return new TextSearchResult { Text = "Please configure your facebook", Title = "Facebook", SearchIcon = GetSearchIcon() };
             }
 
+            phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
+
             var friendsList = GetFriendsResult();
             var feedList = GetFeedResult();
 
@@ -29,10 +31,11 @@ namespace NML.Search.Facebook
                 return new TextSearchResult() { Text = "Please configure your facebook" };
             }
 
-            List<SearchResultListItem> friendsResult = friendsList.Where(x => x.Name.Contains(phrase))
+            List<SearchResultListItem> friendsResult = friendsList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()))
                   .Select(x => new SearchResultListItem { Text = x.Name, Url = x.Url, IconUrl = x.Picture }).ToList();
 
-            List<SearchResultListItem> feedResult = feedList.Where(x => x.Name.Contains(phrase) || x.Caption.Contains(phrase) || x.Description.Contains(phrase))
+            List<SearchResultListItem> feedResult = feedList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()) || 
+                x.Caption.ToLowerInvariant().Contains(phrase.ToLowerInvariant()) || x.Description.ToLowerInvariant().Contains(phrase.ToLowerInvariant()))
                 .Select(x => new SearchResultListItem { Text = x.Name, IconUrl = x.Picture, Url = x.Picture }).ToList();
             friendsResult.AddRange(feedResult);
 

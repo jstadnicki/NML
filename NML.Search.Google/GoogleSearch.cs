@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Media.Imaging;
 using HtmlAgilityPack;
+using NML.Core;
 using NML.Core.Interfaces;
 using NML.Core.Results;
 
@@ -19,6 +20,8 @@ namespace NML.Search.Google
     {
         public ISearchResult Search(string phrase)
         {
+            phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
+
             var wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
 

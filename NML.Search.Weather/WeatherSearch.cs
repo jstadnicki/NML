@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json.Linq;
+using NML.Core;
 using NML.Core.Interfaces;
 using NML.Core.Results;
 
@@ -17,6 +18,8 @@ namespace NML.Search.Weather
     {
         public ISearchResult Search(string phrase)
         {
+            phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
+
             var wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
             var webResult = wc.DownloadString(string.Format("http://api.openweathermap.org/data/2.5/find?q={0}&units=metric&mode=json", HttpUtility.UrlEncode(phrase)));

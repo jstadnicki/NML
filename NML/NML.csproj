@@ -191,6 +191,10 @@
       <Project>{414f3ca8-8616-42d5-ab0a-5d9009546175}</Project>
       <Name>NML.Search.Facebook</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NML.Search.FilesSystem\NML.Search.FilesSystem.csproj">
+      <Project>{e2f68a9e-8f66-408c-a7d5-748aa53e2bb8}</Project>
+      <Name>NML.Search.FilesSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NML.Search.Google\NML.Search.Google.csproj">
       <Project>{a77ea9b2-e7c0-4615-8d0e-1537ff322f63}</Project>
       <Name>NML.Search.Google</Name>

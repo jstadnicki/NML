@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json.Linq;
+using NML.Core;
 using NML.Core.Interfaces;
 using NML.Core.Results;
 
@@ -30,6 +31,8 @@ namespace NML.Search.Wikipedia
 
         public ISearchResult Search(string phrase)
         {
+            phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
+
             var hc = new HttpClient();
             var webResultHc = hc.GetStringAsync(string.Format("http://www.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&srprop=timestamp&format=json", HttpUtility.UrlEncode(phrase)));
             var webResult = webResultHc.Result;
