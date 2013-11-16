@@ -41,6 +41,7 @@
             this.Results = new ObservableCollection<ISearchResult>();
             this.syncObject = new object();
             this.cancelTokens = new List<CancellationTokenSource>();
+            this.searchInProgress = false;
             this.timer = new System.Timers.Timer();
             this.timer.Interval = 500;
             this.timer.Elapsed += timer_Elapsed;
@@ -48,6 +49,8 @@
             this.dispatcher = Dispatcher.CurrentDispatcher;
 
         }
+
+        private bool searchInProgress;
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -149,6 +152,20 @@
                 }
 
                 this.cancelTokens.Clear();
+            }
+        }
+
+        public bool SearchInProgress
+        {
+            get
+            {
+                return searchInProgress;
+            }
+            set
+            {
+                searchInProgress = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("SearchInProgress"));
             }
         }
 

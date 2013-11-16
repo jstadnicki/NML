@@ -76,6 +76,7 @@
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\KeyboardHandler.cs" />
+    <Compile Include="Utils\VisibilityConverter.cs" />
     <Page Include="Controls\LinkDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
