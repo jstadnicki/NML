@@ -25,9 +25,11 @@
             <Label>Seeker</Label>
         </Grid>
         <TextBox DockPanel.Dock="Top" Style="{StaticResource SearchTextBox}"
-                 Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2"/>
         <Grid>
-            <controls:ResultDisplay x:Name="SearchResults"  ItemsSource="{Binding Results}"/>
+            <ScrollViewer>
+                <controls:ResultDisplay x:Name="rdSearchResults"  ItemsSource="{Binding Results}"/>
+            </ScrollViewer>
         </Grid>
     </DockPanel>
 </Window>
