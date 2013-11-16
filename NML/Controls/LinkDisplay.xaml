@@ -22,7 +22,7 @@
         <DockPanel>
             <local:FacebookSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="1"/>
             <local:TwitterSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="1"/>
-            <local:Clipboard DockPanel.Dock="Right" Text="{Binding Text}" Width="16" Height="16" Margin="1"/>
+            <local:Clipboard DockPanel.Dock="Right" Text="{Binding Url}" Width="16" Height="16" Margin="1"/>
             <TextBlock Text="{Binding ElementName=RootControl, Path=Text}" TextDecorations="Underline" MouseDown="RootControl_MouseDown"/>
         </DockPanel>
     </Border>
