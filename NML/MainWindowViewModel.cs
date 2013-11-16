@@ -5,15 +5,20 @@
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
+    using System.Security.AccessControl;
     using System.Threading;
     using System.Threading.Tasks;
 
     using System.Linq;
+    using System.Windows.Forms.VisualStyles;
+    using System.Windows.Threading;
 
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.Configuration;
 
     using NML.Core.Interfaces;
+
+    using Timer = System.Timers.Timer;
 
     public class MainWindowViewModel : INotifyPropertyChanged
     {
@@ -36,6 +41,17 @@
             this.Results = new ObservableCollection<ISearchResult>();
             this.syncObject = new object();
             this.cancelTokens = new List<CancellationTokenSource>();
+            this.timer = new System.Timers.Timer();
+            this.timer.Interval = 500;
+            this.timer.Elapsed += timer_Elapsed;
+            this.timer.AutoReset = false;
+            this.dispatcher = Dispatcher.CurrentDispatcher;
+
+        }
+
+        void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            this.dispatcher.Invoke(this.TriggerSearchMechanism);
         }
 
         private void LoadPlugins()
@@ -55,6 +71,12 @@
 
         private object syncObject;
 
+        private Timer timer;
+
+        private SynchronizationContext context;
+
+        private Dispatcher dispatcher;
+
         public string QueryText
         {
             get
@@ -63,20 +85,18 @@
             }
             set
             {
-                this.ShouldTriggerSearch(value);
                 this.queryText = value;
+                this.UpdateTimes();
             }
         }
 
-        private void ShouldTriggerSearch(string query)
+        private void UpdateTimes()
         {
-            if (query.Length > 3)
-            {
-                this.TriggerSearchMechanism(query);
-            }
+            this.timer.Stop();
+            this.timer.Start();
         }
 
-        private void TriggerSearchMechanism(string query)
+        private void TriggerSearchMechanism()
         {
             this.CancelPrevious();
             this.Results.Clear();
@@ -92,7 +112,7 @@
             List<Task> tasks = new List<Task>();
             foreach (var engine in this.engines)
             {
-                var queryTask = Task.Factory.StartNew(() => { return engine.Search(query); });
+                var queryTask = Task.Factory.StartNew(() => { return engine.Search(this.QueryText); });
 
                 var continueTask = queryTask.ContinueWith(
                     x =>
@@ -104,7 +124,6 @@
                     }, cancel, TaskContinuationOptions.NotOnCanceled, TaskScheduler.FromCurrentSynchronizationContext());
 
                 tasks.Add(continueTask);
-
             }
 
             Task.WhenAll(tasks).ContinueWith(
