@@ -63,7 +63,7 @@
             </Ellipse>
             -->
             
-            <TextBox Style="{StaticResource SearchTextBox}"
+            <TextBox x:Name="tbSearch" Style="{StaticResource SearchTextBox}"
                      Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2"/>
         </DockPanel>
         

@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="NML.Controls.TwitterSharer"
+             x:Name="RootControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,6 +8,17 @@
              d:DesignHeight="300" d:DesignWidth="300"
              MouseDown="TwitterSharer_OnMouseDown">
     <Grid>
-        <Image Source="..\Images\twitter.png"></Image> 
+        <Border BorderThickness="1">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=RootControl, Path=IsMouseOver}" Value="True">
+                            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ActiveBorderBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Image Source="..\Images\twitter.png" />
+        </Border>
     </Grid>
 </UserControl>

@@ -24,6 +24,8 @@
                 this.WindowState = System.Windows.WindowState.Normal;
 
             this.Activate();
+
+            tbSearch.SelectAll();
         }
 
         private void Window_Closed(object sender, EventArgs e)
