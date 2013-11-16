@@ -1,21 +1,18 @@
-﻿namespace NML
+﻿using System;
+using System.Linq;
+using NML.Core;
+
+namespace NML
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Runtime.CompilerServices;
-    using System.Security.AccessControl;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using System.Linq;
-    using System.Windows.Forms.VisualStyles;
     using System.Windows.Threading;
-
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.Configuration;
-
     using NML.Core.Interfaces;
 
     using Timer = System.Timers.Timer;
@@ -41,6 +38,7 @@
             this.Results = new ObservableCollection<ISearchResult>();
             this.syncObject = new object();
             this.cancelTokens = new List<CancellationTokenSource>();
+            this.searchInProgress = false;
             this.timer = new System.Timers.Timer();
             this.timer.Interval = 500;
             this.timer.Elapsed += timer_Elapsed;
@@ -48,6 +46,8 @@
             this.dispatcher = Dispatcher.CurrentDispatcher;
 
         }
+
+        private bool searchInProgress;
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -72,8 +72,6 @@
         private object syncObject;
 
         private Timer timer;
-
-        private SynchronizationContext context;
 
         private Dispatcher dispatcher;
 
@@ -110,7 +108,10 @@
             }
 
             List<Task> tasks = new List<Task>();
-            foreach (var engine in this.engines)
+
+            var filteredEngines = GetFilteredEngines(this.QueryText);
+
+            foreach (var engine in filteredEngines)
             {
                 var queryTask = Task.Factory.StartNew(() => { return engine.Search(this.QueryText); });
 
@@ -152,6 +153,20 @@
             }
         }
 
+        public bool SearchInProgress
+        {
+            get
+            {
+                return searchInProgress;
+            }
+            set
+            {
+                searchInProgress = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("SearchInProgress"));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -161,6 +176,19 @@
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        private IEnumerable<ISearchEngine> GetFilteredEngines(string query)
+        {
+            var prefixIndex = query.IndexOf(Constants.QueryPrefixSeparator);
+
+            if (prefixIndex > 0)
+            {
+                var queryPrefix = query.Substring(0, prefixIndex);
+                return engines.Where(e => e.Prefix.Equals(queryPrefix, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            return this.engines;
         }
     }
 }

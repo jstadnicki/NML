@@ -11,7 +11,5 @@ namespace NML.Core.Interfaces
         bool IsConfigurable { get; }
 
         void Configure();
-
-        BitmapImage SearchIcon { get; }
     }
 }

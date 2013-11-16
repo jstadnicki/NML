@@ -12,22 +12,12 @@ namespace NML.Search.Facebook
 {
     public class FacebookSearch : ISearchEngine
     {
-        public FacebookSearch()
-        {
-            var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Facebook.Images.fb.png");
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = s;
-            image.EndInit();
-            SearchIcon = image;
-        }
-
         public ISearchResult Search(string phrase)
         {
             var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
             if (token == null)
             {
-                return new TextSearchResult() { Text = "Please configure your facebook" };
+                return new TextSearchResult { Text = "Please configure your facebook", Title = "Facebook", SearchIcon = GetSearchIcon() };
             }
 
             var friendsList = GetFriendsResult();
@@ -51,8 +41,9 @@ namespace NML.Search.Facebook
                 friendsList = null;
                 feedList = null;
             }
-            return new ListSearchResult(friendsResult, "Facebook");
-
+            var result = new ListSearchResult(friendsResult, "Facebook");
+            result.SearchIcon = GetSearchIcon();
+            return result;
         }
 
         private static List<FacebookUser> friendsList = null;
@@ -74,7 +65,7 @@ namespace NML.Search.Facebook
                     }
                     lastUpdateTime = DateTime.UtcNow;
                 }
-                catch (Exception ex)
+                catch
                 {
                     return null;
                 }
@@ -113,7 +104,7 @@ namespace NML.Search.Facebook
                         });
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     return null;
                 }
@@ -143,5 +134,16 @@ namespace NML.Search.Facebook
         }
 
         public BitmapImage SearchIcon { get; private set; }
+
+        private BitmapImage GetSearchIcon()
+        {
+            var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Facebook.Images.fb.png");
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = s;
+            image.EndInit();
+            image.Freeze();
+            return image;
+        }
     }
 }

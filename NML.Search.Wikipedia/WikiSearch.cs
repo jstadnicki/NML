@@ -16,29 +16,36 @@ namespace NML.Search.Wikipedia
     {
         private const string wikiUrl = "http://en.wikipedia.org/wiki/{0}";
 
-        public WikiSearch()
+        private BitmapImage GetSearchIcon()
         {
             var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Wikipedia.Images.wiki.png");
             var image = new BitmapImage();
             image.BeginInit();
             image.StreamSource = s;
             image.EndInit();
-            SearchIcon = image;
+            image.Freeze();
+            return image;
         }
 
         public ISearchResult Search(string phrase)
         {
             var wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
-            var webResult = wc.DownloadString(string.Format("http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&srprop=timestamp&format=json", HttpUtility.UrlEncode(phrase)));
+            var webResult = wc.DownloadString(string.Format("http://www.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&srprop=timestamp&format=json", HttpUtility.UrlEncode(phrase)));
 
             var wikiResults = ParseResult(webResult);
-            return new ListSearchResult(wikiResults.Select(wsr => MapWikiSearch(wsr)), "Wikipedia");
+            var result = new ListSearchResult(wikiResults.Select(wsr => MapWikiSearch(wsr)), "Wikipedia");
+            result.SearchIcon = GetSearchIcon();
+            return result;
         }
 
         private SearchResultListItem MapWikiSearch(WikiSearchResult wsr)
         {
-            throw new NotImplementedException();
+            return new SearchResultListItem
+            {
+                Text = wsr.Title,
+                Url = wsr.Url
+            };
         }
 
         private IEnumerable<WikiSearchResult> ParseResult(string webResult)

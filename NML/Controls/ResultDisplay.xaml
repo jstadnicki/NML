@@ -58,9 +58,9 @@
         
         <DataTemplate DataType="{x:Type results:ListSearchResult}">
             <Border BorderBrush="{x:Static SystemColors.ControlDarkBrush}" BorderThickness="1" CornerRadius="2"
-                    Background="{x:Static SystemColors.ControlLightBrush}" Margin="2">
+                    Background="{x:Static SystemColors.ControlLightBrush}" Margin="2, 2, 4, 4">
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal" Margin="1" Background="Green">
+                    <StackPanel Orientation="Horizontal" Margin="1">
                         <Image Source="{Binding SearchIcon}" Width="16" Height="16" Margin="1" />
                         <Label Content="{Binding Title}" FontWeight="Bold" FontSize="11" Margin="1" >
                             <Label.Effect>
@@ -71,17 +71,14 @@
                     <ItemsControl ItemsSource="{Binding ResultList}">
                         <ItemsControl.Resources>
                             <DataTemplate DataType="{x:Type results:SearchResultListItem}">
-                                <Border>
-                                    <StackPanel Orientation="Vertical">
-                                        <Label Content="{Binding Text}" />
-                                        <Label Content="{Binding Url}" />
-                                        <Label Content="{Binding IconUrl}" />
-                                    </StackPanel>
-                                </Border>
+                                <controls:LinkDisplay Text="{Binding Text}" Url="{Binding Url}" />
                             </DataTemplate>
                         </ItemsControl.Resources>
                     </ItemsControl>
                 </StackPanel>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="3" Color="#000000" Opacity="0.2" Direction="315" ShadowDepth="2" />
+                </Border.Effect>
             </Border>
         </DataTemplate>
     </ItemsControl.Resources>

@@ -15,16 +15,6 @@ namespace NML.Search.Google
 {
     public class GoogleSearch : ISearchEngine
     {
-        public GoogleSearch()
-        {
-            var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Google.Images.goo.png");
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = s;
-            image.EndInit();
-            SearchIcon = image;
-        }
-
         public ISearchResult Search(string phrase)
         {
             var wc = new WebClient();
@@ -32,7 +22,9 @@ namespace NML.Search.Google
             var webResult = wc.DownloadString(string.Format("http://www.google.pl/search?q={0}", HttpUtility.UrlEncode(phrase)));
 
             var googleResults = ParseResult(webResult);
-            return new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)), "Google");
+            var result = new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)), "Google");
+            result.SearchIcon = GetSearchIcon();
+            return result;
         }
 
         public string Prefix
@@ -105,5 +97,16 @@ namespace NML.Search.Google
         }
 
         public BitmapImage SearchIcon { get; private set; }
+
+        private BitmapImage GetSearchIcon()
+        {
+            var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Google.Images.goo.png");
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = s;
+            image.EndInit();
+            image.Freeze();
+            return image;
+        }
     }
 }
