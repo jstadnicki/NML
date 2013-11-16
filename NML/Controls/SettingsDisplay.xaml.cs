@@ -30,7 +30,7 @@ namespace NML.Controls
         {
             foreach (var item in (this.DataContext as SettingsWindowViewModel).Results)
             {
-                if (item.Name == ((Button)sender).Tag) { item.Configure(); }
+                if (item.Name == ((Button)sender).Tag.ToString()) { item.Configure(); }
                 
             }
         }
