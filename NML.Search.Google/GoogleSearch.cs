@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Media.Imaging;
 using HtmlAgilityPack;
@@ -19,7 +21,10 @@ namespace NML.Search.Google
         {
             var wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
-            var webResult = wc.DownloadString(string.Format("http://www.google.pl/search?q={0}", HttpUtility.UrlEncode(phrase)));
+
+            var hc = new HttpClient();
+            var webResultHc = hc.GetStringAsync(string.Format("http://www.google.pl/search?q={0}", HttpUtility.UrlEncode(phrase)));
+            var webResult = webResultHc.Result;
 
             var googleResults = ParseResult(webResult);
             var result = new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)), "Google");
@@ -65,7 +70,7 @@ namespace NML.Search.Google
                     var gsr = new GoogleSearchResult();
 
                     var aNode = n.SelectSingleNode(".//h3[@class='r']/a");
-                    gsr.Title = StripHTML(aNode.InnerText);
+                    gsr.Title = StripHTML(HttpUtility.HtmlDecode(aNode.InnerText));
                     gsr.Url = GetUrl(aNode.GetAttributeValue("href", string.Empty));
 
                     Uri uri;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Web;
@@ -29,9 +30,9 @@ namespace NML.Search.Wikipedia
 
         public ISearchResult Search(string phrase)
         {
-            var wc = new WebClient();
-            wc.Encoding = Encoding.UTF8;
-            var webResult = wc.DownloadString(string.Format("http://www.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&srprop=timestamp&format=json", HttpUtility.UrlEncode(phrase)));
+            var hc = new HttpClient();
+            var webResultHc = hc.GetStringAsync(string.Format("http://www.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&srprop=timestamp&format=json", HttpUtility.UrlEncode(phrase)));
+            var webResult = webResultHc.Result;
 
             var wikiResults = ParseResult(webResult);
             var result = new ListSearchResult(wikiResults.Select(wsr => MapWikiSearch(wsr)), "Wikipedia");

@@ -17,7 +17,7 @@ namespace NML.Search.Calc
                 try
                 {
                     // TODO: allow sin, now only Sin works
-                    result.Text = ex.Evaluate().ToString();
+                    result.Text = string.Format("{0} = {1}", phrase, ex.Evaluate());
                 }
                 catch
                 {
