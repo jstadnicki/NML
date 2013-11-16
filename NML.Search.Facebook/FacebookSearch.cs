@@ -142,6 +142,7 @@ namespace NML.Search.Facebook
             image.BeginInit();
             image.StreamSource = s;
             image.EndInit();
+            image.Freeze();
             return image;
         }
     }

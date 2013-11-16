@@ -23,6 +23,7 @@ namespace NML.Search.Wikipedia
             image.BeginInit();
             image.StreamSource = s;
             image.EndInit();
+            image.Freeze();
             return image;
         }
 
@@ -30,7 +31,7 @@ namespace NML.Search.Wikipedia
         {
             var wc = new WebClient();
             wc.Encoding = Encoding.UTF8;
-            var webResult = wc.DownloadString(string.Format("http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&srprop=timestamp&format=json", HttpUtility.UrlEncode(phrase)));
+            var webResult = wc.DownloadString(string.Format("http://www.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&srprop=timestamp&format=json", HttpUtility.UrlEncode(phrase)));
 
             var wikiResults = ParseResult(webResult);
             var result = new ListSearchResult(wikiResults.Select(wsr => MapWikiSearch(wsr)), "Wikipedia");

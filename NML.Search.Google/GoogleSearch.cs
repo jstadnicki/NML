@@ -105,6 +105,7 @@ namespace NML.Search.Google
             image.BeginInit();
             image.StreamSource = s;
             image.EndInit();
+            image.Freeze();
             return image;
         }
     }

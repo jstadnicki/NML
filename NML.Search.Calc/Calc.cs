@@ -54,6 +54,7 @@ namespace NML.Search.Calc
             image.BeginInit();
             image.StreamSource = s;
             image.EndInit();
+            image.Freeze();
             return image;
         }
     }
