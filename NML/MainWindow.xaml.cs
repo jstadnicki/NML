@@ -93,5 +93,11 @@
 #endif
 
         }
+
+        private void buttonSettings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow sw = new SettingsWindow();
+            sw.ShowDialog();
+        }
     }
 }

@@ -94,5 +94,11 @@ namespace NML.Search.Wikipedia
         }
 
         public BitmapImage SearchIcon { get; private set; }
+
+
+        public string Name
+        {
+            get { return "Wikipedia"; }
+        }
     }
 }

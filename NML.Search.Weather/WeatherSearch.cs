@@ -91,5 +91,11 @@ namespace NML.Search.Weather
             image.Freeze();
             return image;
         }
+
+
+        public string Name
+        {
+            get { return "Weather"; }
+        }
     }
 }

@@ -57,5 +57,11 @@ namespace NML.Search.Calc
             image.Freeze();
             return image;
         }
+
+
+        public string Name
+        {
+            get { return "Calc"; }
+        }
     }
 }

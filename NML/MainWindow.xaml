@@ -41,7 +41,8 @@
 
     <DockPanel>
         <Grid DockPanel.Dock="Top">
-            <Label>Seeker</Label>
+            <Label Margin="0,0,80,0">Seeker</Label>
+            <Button x:Name="buttonSettings" Content="Settings" HorizontalAlignment="Left" Margin="685,0,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="buttonSettings_Click"/>
         </Grid>
         
         <DockPanel DockPanel.Dock="Top">

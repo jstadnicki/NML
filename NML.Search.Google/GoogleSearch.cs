@@ -103,6 +103,12 @@ namespace NML.Search.Google
 
         public BitmapImage SearchIcon { get; private set; }
 
+
+        public string Name
+        {
+            get { return "Google"; }
+        }
+
         private BitmapImage GetSearchIcon()
         {
             var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Google.Images.goo.png");
