@@ -92,17 +92,20 @@ namespace NML.Search.Facebook
 
                     foreach (var f in feed.data)
                     {
-                        feedList.Add(new FacebookFeed
+                        if (!string.IsNullOrEmpty(f.name))
                         {
-                            Name = f.name ?? string.Empty,
-                            Id = f.id,
-                            Caption = f.caption ?? string.Empty,
-                            Description = f.description ?? string.Empty,
-                            From = new FacebookUser { Name = f.from.name, Id = f.from.id },
-                            Link = f.link ?? string.Empty,
-                            Picture = f.picture ?? string.Empty
+                            feedList.Add(new FacebookFeed
+                            {
+                                Name = f.name ?? string.Empty,
+                                Id = f.id,
+                                Caption = f.caption ?? string.Empty,
+                                Description = f.description ?? string.Empty,
+                                From = new FacebookUser { Name = f.from.name, Id = f.from.id },
+                                Link = f.link ?? string.Empty,
+                                Picture = f.picture ?? string.Empty
 
-                        });
+                            });
+                        }
                     }
                 }
                 catch

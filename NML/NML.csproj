@@ -67,6 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Clipboard.xaml.cs">
+      <DependentUpon>Clipboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlatButton.xaml.cs">
+      <DependentUpon>FlatButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TwitterSharer.xaml.cs">
       <DependentUpon>TwitterSharer.xaml</DependentUpon>
     </Compile>
@@ -88,6 +94,14 @@
     </Compile>
     <Compile Include="Utils\KeyboardHandler.cs" />
     <Compile Include="Utils\VisibilityConverter.cs" />
+    <Page Include="Controls\Clipboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FlatButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TwitterSharer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -158,6 +172,8 @@
     <Resource Include="Images\zoom.png" />
     <Resource Include="Images\fb.png" />
     <Resource Include="Images\twitter.png" />
+    <Resource Include="Images\settings.png" />
+    <Resource Include="Images\ClipboardCopy.png" />
     <Content Include="nml.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
