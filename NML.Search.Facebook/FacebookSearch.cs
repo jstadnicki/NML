@@ -12,12 +12,19 @@ namespace NML.Search.Facebook
 {
     public class FacebookSearch : ISearchEngine
     {
+        public FacebookSearch()
+        {
+            SearchIcon = GetSearchIcon();
+        }
+
+        private const string ConfigureMessage = "Please configure your Facebook account";
+
         public ISearchResult Search(string phrase)
         {
             var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
             if (token == null)
             {
-                return new TextSearchResult { Text = "Please configure your facebook", Title = "Facebook", SearchIcon = GetSearchIcon() };
+                return new TextSearchResult { Text = ConfigureMessage, Title = Name, SearchIcon = SearchIcon };
             }
 
             phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
@@ -28,7 +35,7 @@ namespace NML.Search.Facebook
             if (friendsList == null || feedList == null)
             {
                 ConfigurationHelper.SetConfiguration(FbSettings.TokenKey, "");
-                return new TextSearchResult() { Text = "Please configure your facebook" };
+                return new TextSearchResult() { Text = ConfigureMessage, Title = Name, SearchIcon = SearchIcon };
             }
 
             List<SearchResultListItem> friendsResult = friendsList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()))
@@ -119,11 +126,6 @@ namespace NML.Search.Facebook
                 lastUpdateTime = DateTime.UtcNow;
             }
             return feedList;
-        }
-
-        public FacebookSearch()
-        {
-            SearchIcon = GetSearchIcon();
         }
 
         public string Prefix
