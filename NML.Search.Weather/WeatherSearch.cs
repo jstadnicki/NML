@@ -68,7 +68,7 @@ namespace NML.Search.Weather
             return result;
         }
 
-        public string Prefix { get; private set; }
+        public string Prefix { get { return "x"; } }
         
         public bool IsConfigurable
         {
