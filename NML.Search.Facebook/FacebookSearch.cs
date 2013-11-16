@@ -43,7 +43,7 @@ namespace NML.Search.Facebook
 
             List<ImageResultListItem> feedResult = feedList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()) || 
                 x.Caption.ToLowerInvariant().Contains(phrase.ToLowerInvariant()) || x.Description.ToLowerInvariant().Contains(phrase.ToLowerInvariant()))
-                .Select(x => new ImageResultListItem { Text = x.Name, IconUrl = x.Picture, Url = x.Picture }).ToList();
+                .Select(x => new ImageResultListItem { Text = x.Name, IconUrl = x.Picture, Url = x.Picture, Caption = x.Caption }).ToList();
             friendsResult.AddRange(feedResult);
 
             if ((DateTime.UtcNow - lastUpdateTime).TotalMinutes > 30)
