@@ -87,6 +87,7 @@ namespace NML
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     this.timer.Stop();
+                    this.Results.Clear();
                 }
                 else
                 {

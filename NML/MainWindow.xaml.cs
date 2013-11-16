@@ -98,6 +98,7 @@
         {
             this.WindowState = WindowState.Normal;
             this.Show();
+            this.Focus();
         }
 
         protected override void OnStateChanged(EventArgs e)
