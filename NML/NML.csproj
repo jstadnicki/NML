@@ -70,6 +70,9 @@
     <Compile Include="Controls\Clipboard.xaml.cs">
       <DependentUpon>Clipboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GoogleSharer.xaml.cs">
+      <DependentUpon>GoogleSharer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FlatButton.xaml.cs">
       <DependentUpon>FlatButton.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
     <Compile Include="Utils\KeyboardHandler.cs" />
     <Compile Include="Utils\VisibilityConverter.cs" />
     <Page Include="Controls\Clipboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GoogleSharer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -182,6 +189,7 @@
     <Resource Include="Images\close.png" />
     <Resource Include="Images\fb.png" />
     <Resource Include="Images\twitter.png" />
+    <Resource Include="Images\gplus-16.png" />
     <Content Include="nml.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -28,6 +28,8 @@
                                   Visibility="{Binding ElementName=RootControl, Path=IsMouseOver, Converter={StaticResource VisibilityConverter}}" />
             <local:TwitterSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="0" 
                                  Visibility="{Binding ElementName=RootControl, Path=IsMouseOver, Converter={StaticResource VisibilityConverter}}" />
+            <local:GoogleSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="0" 
+                                 Visibility="{Binding ElementName=RootControl, Path=IsMouseOver, Converter={StaticResource VisibilityConverter}}" />
             <local:Clipboard DockPanel.Dock="Right" Text="{Binding Url}" Width="16" Height="16" Margin="0"
                              Visibility="{Binding ElementName=RootControl, Path=IsMouseOver, Converter={StaticResource VisibilityConverter}}" />
             <TextBlock Text="{Binding ElementName=RootControl, Path=Text}" TextDecorations="Underline" MouseDown="RootControl_MouseDown" MinHeight="20"/>
