@@ -1,11 +1,4 @@
-﻿using NML.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NML.Core.Results
+﻿namespace NML.Core.Results
 {
     public class LinkSearchResult : BaseSearchResult
     {

@@ -7,16 +7,6 @@ namespace NML.Search.Calc
 {
     public class Calc : ISearchEngine
     {
-        public Calc()
-        {
-            var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Calc.Images.calc.png");
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = s;
-            image.EndInit();
-            SearchIcon = image;
-        }
-
         public ISearchResult Search(string phrase)
         {
             var ex = new NCalc.Expression(phrase);
@@ -32,6 +22,7 @@ namespace NML.Search.Calc
                 result.Text = null;
             }
 
+            result.SearchIcon = GetSearchIcon();
             return result;
         }
 
@@ -52,5 +43,15 @@ namespace NML.Search.Calc
         }
 
         public BitmapImage SearchIcon { get; private set; }
+
+        private BitmapImage GetSearchIcon()
+        {
+            var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("NML.Search.Calc.Images.calc.png");
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = s;
+            image.EndInit();
+            return image;
+        }
     }
 }

@@ -3,19 +3,12 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Runtime.CompilerServices;
-    using System.Security.AccessControl;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using System.Linq;
-    using System.Windows.Forms.VisualStyles;
     using System.Windows.Threading;
-
     using Microsoft.Practices.Unity;
     using Microsoft.Practices.Unity.Configuration;
-
     using NML.Core.Interfaces;
 
     using Timer = System.Timers.Timer;
@@ -76,8 +69,6 @@
 
         private Timer timer;
 
-        private SynchronizationContext context;
-
         private Dispatcher dispatcher;
 
         public string QueryText
@@ -113,6 +104,7 @@
             }
 
             List<Task> tasks = new List<Task>();
+
             foreach (var engine in this.engines)
             {
                 var queryTask = Task.Factory.StartNew(() => { return engine.Search(this.QueryText); });

@@ -1,9 +1,11 @@
-﻿namespace NML.Core.Interfaces
+﻿using System.Windows.Media.Imaging;
+
+namespace NML.Core.Interfaces
 {
     public interface ISearchResult
     {
         string Title { get; }
-        string IconUrl { get; }
+        BitmapImage SearchIcon { get; }
         bool HasResult { get; }
     }
 }
