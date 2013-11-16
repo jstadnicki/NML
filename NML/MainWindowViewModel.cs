@@ -83,7 +83,15 @@ namespace NML
             set
             {
                 this.queryText = value;
-                this.UpdateTimes();
+
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    this.timer.Stop();
+                }
+                else
+                {
+                    this.UpdateTimes();
+                }
             }
         }
 
