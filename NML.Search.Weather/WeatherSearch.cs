@@ -16,6 +16,11 @@ namespace NML.Search.Weather
 {
     public class WeatherSearch : ISearchEngine
     {
+        public WeatherSearch()
+        {
+            SearchIcon = GetSearchIcon();
+        }
+
         public ISearchResult Search(string phrase)
         {
             phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
@@ -26,7 +31,7 @@ namespace NML.Search.Weather
 
             var weatherResults = ParseResult(webResult);
             var result = new ListTextSearchResult(weatherResults.Select(wsr => MapWeatherSearch(wsr)), "Weather");
-            result.SearchIcon = GetSearchIcon();
+            result.SearchIcon = SearchIcon;
             return result;
         }
 

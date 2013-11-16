@@ -38,7 +38,8 @@
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <controls:FlatButton DockPanel.Dock="Right" Image="Images\settings.png" Click="buttonSettings_Click" />
+            <controls:FlatButton x:Name="btnClose" DockPanel.Dock="Right" Image="Images\close.png" Click="btnClose_Click" />
+            <controls:FlatButton x:Name="btnSettings" DockPanel.Dock="Right" Image="Images\settings.png" Click="buttonSettings_Click" />
             <Label>Seeker</Label>
         </DockPanel>
         

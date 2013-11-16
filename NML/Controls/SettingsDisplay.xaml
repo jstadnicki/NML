@@ -16,17 +16,14 @@
     <ItemsControl.ItemTemplate>
         <DataTemplate>
         <Border>
-                <Border BorderBrush="{x:Static SystemColors.ControlDarkBrush}" BorderThickness="1" CornerRadius="2"
-                    Background="{x:Static SystemColors.ControlLightBrush}" Margin="2">
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" Margin="1" Background="Green">
-                            <Image Source="{Binding SearchIcon}" Width="16" Height="16" Margin="1" />
-                            <Label Content="{Binding Name}" FontWeight="Bold" FontSize="11" Margin="1" />
-
-                            <Button Click="Button_Click" Tag="{Binding Name}"  Visibility="{Binding IsConfigurable, Converter={StaticResource VisibilityConverter}}">
-                                Configuration</Button>
-                        </StackPanel>
-                    </StackPanel>
+                <Border BorderBrush="{x:Static SystemColors.ControlDarkBrush}" BorderThickness="1" 
+                    Background="{x:Static SystemColors.ControlLightBrush}" Margin="2">                        
+                    <DockPanel>
+                        <Image DockPanel.Dock="Left" Source="{Binding SearchIcon}" Width="16" Height="16" Margin="1" />
+                        <controls:FlatButton DockPanel.Dock="Right" Image="../Images/settings.png" Click="Button_Click" 
+                                             Visibility="{Binding IsConfigurable, Converter={StaticResource VisibilityConverter}}" Tag="{Binding Name}" />
+                        <Label Content="{Binding Name}" FontWeight="Bold" FontSize="11" Margin="1" />
+                    </DockPanel>
                 </Border>
             </Border>
         </DataTemplate>

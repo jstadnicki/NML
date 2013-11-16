@@ -45,7 +45,7 @@ namespace NML.Search.Facebook
                 feedList = null;
             }
             var result = new ListSearchResult(friendsResult, "Facebook");
-            result.SearchIcon = GetSearchIcon();
+            result.SearchIcon = SearchIcon;
             return result;
         }
 
@@ -121,6 +121,11 @@ namespace NML.Search.Facebook
             return feedList;
         }
 
+        public FacebookSearch()
+        {
+            SearchIcon = GetSearchIcon();
+        }
+
         public string Prefix
         {
             get
@@ -128,7 +133,6 @@ namespace NML.Search.Facebook
                 return "f";
             }
         }
-
 
         public bool IsConfigurable
         {
@@ -142,7 +146,6 @@ namespace NML.Search.Facebook
         }
 
         public BitmapImage SearchIcon { get; private set; }
-
 
         public string Name
         {

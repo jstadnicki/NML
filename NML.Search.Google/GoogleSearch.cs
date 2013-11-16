@@ -18,6 +18,11 @@ namespace NML.Search.Google
 {
     public class GoogleSearch : ISearchEngine
     {
+        public GoogleSearch()
+        {
+            SearchIcon = GetSearchIcon();
+        }
+
         public ISearchResult Search(string phrase)
         {
             phrase = Utils.PhraseWithoutPrefix(phrase, Prefix);
@@ -31,7 +36,7 @@ namespace NML.Search.Google
 
             var googleResults = ParseResult(webResult);
             var result = new ListSearchResult(googleResults.Select(gsr => MapGoogleSearch(gsr)), "Google");
-            result.SearchIcon = GetSearchIcon();
+            result.SearchIcon = SearchIcon;
             return result;
         }
 

@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NML", "NML\NML.csproj", "{F216D139-C555-4972-95D5-68E0B4D4EE9F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E2F68A9E-8F66-408C-A7D5-748AA53E2BB8} = {E2F68A9E-8F66-408C-A7D5-748AA53E2BB8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NML.Core", "NML.Core\NML.Core.csproj", "{31A51C9A-C410-495F-837C-5A19E5B1B961}"
 EndProject

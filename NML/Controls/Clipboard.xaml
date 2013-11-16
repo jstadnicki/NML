@@ -19,7 +19,7 @@
                 </Style>
             </Border.Style>
 
-            <Image Source="..\Images\ClipboardCopy.png" />
+            <Image Source="..\Images\copy.png" />
         </Border>
     </Grid>
 </UserControl>

@@ -34,6 +34,7 @@
             this.Show();
             this.Activate();
             tbSearch.SelectAll();
+            tbSearch.Focus();
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -125,13 +126,17 @@
                 this.Hide();
             }
 #endif
-
         }
 
         private void buttonSettings_Click(object sender, RoutedEventArgs e)
         {
             SettingsWindow sw = new SettingsWindow();
             sw.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
         }
     }
 }

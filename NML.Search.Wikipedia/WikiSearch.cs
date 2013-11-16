@@ -16,6 +16,11 @@ namespace NML.Search.Wikipedia
 {
     public class WikiSearch : ISearchEngine
     {
+        public WikiSearch()
+        {
+            SearchIcon = GetSearchIcon();
+        }
+
         private const string wikiUrl = "http://en.wikipedia.org/wiki/{0}";
 
         private BitmapImage GetSearchIcon()
@@ -39,7 +44,7 @@ namespace NML.Search.Wikipedia
 
             var wikiResults = ParseResult(webResult);
             var result = new ListSearchResult(wikiResults.Select(wsr => MapWikiSearch(wsr)), "Wikipedia");
-            result.SearchIcon = GetSearchIcon();
+            result.SearchIcon = SearchIcon;
             return result;
         }
 

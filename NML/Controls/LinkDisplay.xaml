@@ -5,25 +5,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NML.Controls"
+             xmlns:utils="clr-namespace:NML.Utils"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Border x:Name="bgBorder" Cursor="Hand" Margin="1" Padding="1" CornerRadius="2" BorderThickness="1">
+             d:DesignHeight="300" d:DesignWidth="300"
+             SnapsToDevicePixels="True">
+    <UserControl.Resources>
+        <utils:VisibilityConverter x:Key="VisibilityConverter" />
+    </UserControl.Resources>
+    <Border x:Name="bgBorder" Cursor="Hand" Margin="1" Padding="3" BorderThickness="1">
         <Border.Style>
             <Style TargetType="Border">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding ElementName=RootControl, Path=IsMouseOver}" Value="True">
                         <Setter Property="Background" Value="{x:Static SystemColors.ControlLightLightBrush}" />
                         <Setter Property="BorderBrush" Value="{x:Static SystemColors.ControlDarkBrush}" />
-                        <Setter Property="BorderThickness" Value="1" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
         </Border.Style>
         <DockPanel>
-            <local:FacebookSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="1"/>
-            <local:TwitterSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="1"/>
-            <local:Clipboard DockPanel.Dock="Right" Text="{Binding Url}" Width="16" Height="16" Margin="1"/>
-            <TextBlock Text="{Binding ElementName=RootControl, Path=Text}" TextDecorations="Underline" MouseDown="RootControl_MouseDown"/>
+            <local:FacebookSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="0" 
+                                  Visibility="{Binding ElementName=RootControl, Path=IsMouseOver, Converter={StaticResource VisibilityConverter}}" />
+            <local:TwitterSharer DockPanel.Dock="Right" ShareUrl="{Binding Url}" Width="16" Height="16" Margin="0" 
+                                 Visibility="{Binding ElementName=RootControl, Path=IsMouseOver, Converter={StaticResource VisibilityConverter}}" />
+            <local:Clipboard DockPanel.Dock="Right" Text="{Binding Url}" Width="16" Height="16" Margin="0"
+                             Visibility="{Binding ElementName=RootControl, Path=IsMouseOver, Converter={StaticResource VisibilityConverter}}" />
+            <TextBlock Text="{Binding ElementName=RootControl, Path=Text}" TextDecorations="Underline" MouseDown="RootControl_MouseDown" MinHeight="20"/>
         </DockPanel>
     </Border>
 </UserControl>

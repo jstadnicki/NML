@@ -28,7 +28,7 @@ namespace NML.Search.Calc
                 }
             }
 
-            result.SearchIcon = GetSearchIcon();
+            result.SearchIcon = SearchIcon;// GetSearchIcon();
             return result;
         }
 
@@ -37,6 +37,10 @@ namespace NML.Search.Calc
             get { return "c"; }
         }
 
+        public Calc()
+        {
+            SearchIcon = GetSearchIcon();
+        }
 
         public bool IsConfigurable
         {
