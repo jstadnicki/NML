@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Application.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Unity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -190,9 +193,7 @@
     <Resource Include="Images\fb.png" />
     <Resource Include="Images\twitter.png" />
     <Resource Include="Images\gplus-16.png" />
-    <Content Include="nml.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Application.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NML.Core\NML.Core.csproj">
