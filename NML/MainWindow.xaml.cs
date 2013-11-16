@@ -119,6 +119,7 @@
 #else
             if (this.appexit)
             {
+                this.icon.Visible = false;
                 base.OnClosing(e);
             }
             else
