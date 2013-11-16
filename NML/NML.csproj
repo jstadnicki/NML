@@ -171,6 +171,10 @@
       <Project>{a77ea9b2-e7c0-4615-8d0e-1537ff322f63}</Project>
       <Name>NML.Search.Google</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NML.Search.Weather\NML.Search.Weather.csproj">
+      <Project>{67b6cc5e-cc04-4b06-95b7-578b32d07f61}</Project>
+      <Name>NML.Search.Weather</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NML.Search.Wikipedia\NML.Search.Wikipedia.csproj">
       <Project>{d7fb6e03-74f7-4dca-8423-963f678d7ef8}</Project>
       <Name>NML.Search.Wikipedia</Name>

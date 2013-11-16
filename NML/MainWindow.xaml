@@ -20,21 +20,24 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+        <!--
         <Storyboard x:Key="Storyboard1" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
                 <SplineDoubleKeyFrame KeyTime="00:00:02" Value="360"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        -->
         
         <utils:VisibilityConverter x:Key="VisibilityConverter" />
     </Window.Resources>
 
+    <!--
     <Window.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard Storyboard="{StaticResource Storyboard1}"/>
         </EventTrigger>
     </Window.Triggers>
+    -->
 
     <DockPanel>
         <Grid DockPanel.Dock="Top">
@@ -42,6 +45,7 @@
         </Grid>
         
         <DockPanel DockPanel.Dock="Top">
+            <!--
             <Ellipse Visibility="{Binding SearchInProgress, Converter={StaticResource VisibilityConverter}}" DockPanel.Dock="Right" Width="16" Height="16" x:Name="ellipse" Margin="2,2,2,2" StrokeThickness="4" RenderTransformOrigin="0.5,0.5">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
@@ -57,6 +61,7 @@
                     </LinearGradientBrush>
                 </Ellipse.Stroke>
             </Ellipse>
+            -->
             
             <TextBox Style="{StaticResource SearchTextBox}"
                      Text="{Binding QueryText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="2"/>

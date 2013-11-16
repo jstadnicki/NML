@@ -57,7 +57,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\sun.png" />
+    <EmbeddedResource Include="Images\sun.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

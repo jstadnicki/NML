@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Linq;
 using NML.Core;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Threading;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using NML.Core.Interfaces;
 
 namespace NML
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Windows.Threading;
-    using Microsoft.Practices.Unity;
-    using Microsoft.Practices.Unity.Configuration;
-    using NML.Core.Interfaces;
-
     using Timer = System.Timers.Timer;
 
     public class MainWindowViewModel : INotifyPropertyChanged
