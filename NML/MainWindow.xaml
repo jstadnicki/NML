@@ -41,7 +41,11 @@
 
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button DockPanel.Dock="Right" x:Name="buttonSettings" Content="Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="26" Click="buttonSettings_Click"/>
+            <Button DockPanel.Dock="Right" x:Name="buttonSettings" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="26" Click="buttonSettings_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/settings.jpg" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
             <Label>Seeker</Label>
         </DockPanel>
         

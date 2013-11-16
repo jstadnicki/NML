@@ -158,6 +158,7 @@
     <Resource Include="Images\zoom.png" />
     <Resource Include="Images\fb.png" />
     <Resource Include="Images\twitter.png" />
+    <Resource Include="Images\settings.jpg" />
     <Content Include="nml.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
