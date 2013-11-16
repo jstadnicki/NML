@@ -1,6 +1,7 @@
 ﻿namespace NML
 {
     using System.Windows.Forms;
+    using System.Windows.Input;
 
     using NML.Core.Results;
     using NML.Utils;
@@ -11,6 +12,8 @@
     using System.Reflection;
     using System.Windows;
     using System.Windows.Media.Imaging;
+
+    using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
     public partial class MainWindow : Window
     {
@@ -25,6 +28,14 @@
 
             this.Activate();
         }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                this.Close();
+            }
+        }   
 
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -51,8 +62,9 @@
             var workingArea = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             this.Width = workingArea.Width / 3;
             this.Left = workingArea.Width - this.Width;
+
             this.Top = workingArea.Top;
-            this.Height = workingArea.Bottom;
+            this.Height = Screen.PrimaryScreen.WorkingArea.Height;
         }
         
 

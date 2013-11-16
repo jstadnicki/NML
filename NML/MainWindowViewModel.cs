@@ -95,6 +95,7 @@ namespace NML
 
         private void TriggerSearchMechanism()
         {
+            this.SearchInProgress = true;
             this.CancelPrevious();
             this.Results.Clear();
 
@@ -134,6 +135,7 @@ namespace NML
                         if (this.cancelTokens.Contains(cancellationToken))
                         {
                             this.cancelTokens.Remove(cancellationToken);
+                            this.SearchInProgress = false;
                         }
                     }
                 });
@@ -162,7 +164,9 @@ namespace NML
             {
                 searchInProgress = value;
                 if (PropertyChanged != null)
+                {
                     PropertyChanged(this, new PropertyChangedEventArgs("SearchInProgress"));
+                }
             }
         }
 
