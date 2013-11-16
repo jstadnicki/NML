@@ -38,12 +38,12 @@ namespace NML.Search.Facebook
                 return new TextSearchResult() { Text = ConfigureMessage, Title = Name, SearchIcon = SearchIcon };
             }
 
-            List<SearchResultListItem> friendsResult = friendsList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()))
-                  .Select(x => new SearchResultListItem { Text = x.Name, Url = x.Url, IconUrl = x.Picture }).ToList();
+            List<ImageResultListItem> friendsResult = friendsList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()))
+                  .Select(x => new ImageResultListItem { Text = x.Name, Url = x.Url, IconUrl = x.Picture }).ToList();
 
-            List<SearchResultListItem> feedResult = feedList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()) || 
+            List<ImageResultListItem> feedResult = feedList.Where(x => x.Name.ToLowerInvariant().Contains(phrase.ToLowerInvariant()) || 
                 x.Caption.ToLowerInvariant().Contains(phrase.ToLowerInvariant()) || x.Description.ToLowerInvariant().Contains(phrase.ToLowerInvariant()))
-                .Select(x => new SearchResultListItem { Text = x.Name, IconUrl = x.Picture, Url = x.Picture }).ToList();
+                .Select(x => new ImageResultListItem { Text = x.Name, IconUrl = x.Picture, Url = x.Picture }).ToList();
             friendsResult.AddRange(feedResult);
 
             if ((DateTime.UtcNow - lastUpdateTime).TotalMinutes > 30)
@@ -51,7 +51,7 @@ namespace NML.Search.Facebook
                 friendsList = null;
                 feedList = null;
             }
-            var result = new ListSearchResult(friendsResult, "Facebook");
+            var result = new ImageTextListResult(friendsResult, "Facebook");
             result.SearchIcon = SearchIcon;
             return result;
         }

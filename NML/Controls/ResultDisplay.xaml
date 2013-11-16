@@ -111,5 +111,33 @@
                 </Border.Effect>
             </Border>
         </DataTemplate>
+
+        <!-- Image list -->
+
+        <DataTemplate DataType="{x:Type results:ImageTextListResult}">
+            <Border BorderBrush="{x:Static SystemColors.ControlDarkBrush}" BorderThickness="1" 
+                    Background="{x:Static SystemColors.ControlLightBrush}" Margin="2, 2, 4, 4">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="1">
+                        <Image Source="{Binding SearchIcon}" Width="16" Height="16" Margin="1" />
+                        <Label Content="{Binding Title}" FontWeight="Bold" FontSize="11" Margin="1" >
+                            <Label.Effect>
+                                <DropShadowEffect Color="#ffffff" Opacity="1.0" ShadowDepth="0" BlurRadius="5" />
+                            </Label.Effect>
+                        </Label>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding ResultList}">
+                        <ItemsControl.Resources>
+                            <DataTemplate DataType="{x:Type results:ImageResultListItem}">
+                                <controls:LinkDisplay Text="{Binding Text}" Url="{Binding Url}" />
+                            </DataTemplate>
+                        </ItemsControl.Resources>
+                    </ItemsControl>
+                </StackPanel>
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="3" Color="#000000" Opacity="0.2" Direction="315" ShadowDepth="2" />
+                </Border.Effect>
+            </Border>
+        </DataTemplate>
     </ItemsControl.Resources>
 </ItemsControl>
