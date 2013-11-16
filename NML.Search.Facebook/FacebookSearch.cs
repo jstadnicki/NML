@@ -25,57 +25,99 @@ namespace NML.Search.Facebook
         public ISearchResult Search(string phrase)
         {
             var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
-            if (token != null)
+            if (token == null)
             {
-
-                var friendsList = GetFriendsResult();
-                 List<SearchResultListItem> friendsResult = friendsList.Where(x => x.Name.Contains(phrase))
-                       .Select(x => new SearchResultListItem{Text = x.Name,Url=x.Url, IconUrl=x.Picture }).ToList();
-                var feedList = GetFeedResult();
-                List<SearchResultListItem> feedResult = feedList.Where(x => x.Name.Contains(phrase) || x.Caption.Contains(phrase) || x.Description.Contains(phrase))
-                    .Select(x => new SearchResultListItem{ Text = x.Name, IconUrl=x.Picture, Url = x.Picture}).ToList();
-                friendsResult.AddRange(feedResult);
-                return new ListSearchResult(friendsResult, "Facebook");
+                return new TextSearchResult() { Text = "Please configure your facebook" };
             }
-            return new TextSearchResult() { Text = "Please configure your facebook" };
+
+            var friendsList = GetFriendsResult();
+            var feedList = GetFeedResult();
+
+            if (friendsList == null || feedList == null)
+            {
+                ConfigurationHelper.SetConfiguration(FbSettings.TokenKey, "");
+                return new TextSearchResult() { Text = "Please configure your facebook" };
+            }
+
+            List<SearchResultListItem> friendsResult = friendsList.Where(x => x.Name.Contains(phrase))
+                  .Select(x => new SearchResultListItem { Text = x.Name, Url = x.Url, IconUrl = x.Picture }).ToList();
+
+            List<SearchResultListItem> feedResult = feedList.Where(x => x.Name.Contains(phrase) || x.Caption.Contains(phrase) || x.Description.Contains(phrase))
+                .Select(x => new SearchResultListItem { Text = x.Name, IconUrl = x.Picture, Url = x.Picture }).ToList();
+            friendsResult.AddRange(feedResult);
+
+            if ((DateTime.UtcNow - lastUpdateTime).TotalMinutes > 30)
+            {
+                friendsList = null;
+                feedList = null;
+            }
+            return new ListSearchResult(friendsResult, "Facebook");
+
         }
 
+        private static List<FacebookUser> friendsList = null;
         private static List<FacebookUser> GetFriendsResult()
         {
-            var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
-            FacebookClient fc = new FacebookClient(token);
-            fc.AppId = FbSettings.AppId;
-            fc.AppSecret = FbSettings.AppSecret;
-            var friendsList = new List<FacebookUser>();
-            dynamic friends = fc.Get("me/friends");
-            foreach (var f in friends.data)
+            if (friendsList == null)
             {
-                friendsList.Add(new FacebookUser { Name = f.name, Id = f.id });
+                try
+                {
+                    var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
+                    FacebookClient fc = new FacebookClient(token);
+                    fc.AppId = FbSettings.AppId;
+                    fc.AppSecret = FbSettings.AppSecret;
+                    friendsList = new List<FacebookUser>();
+                    dynamic friends = fc.Get("me/friends");
+                    foreach (var f in friends.data)
+                    {
+                        friendsList.Add(new FacebookUser { Name = f.name, Id = f.id });
+                    }
+                    lastUpdateTime = DateTime.UtcNow;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
             }
             return friendsList;
         }
 
+        private static DateTime lastUpdateTime = DateTime.MinValue;
+        private static List<FacebookFeed> feedList = null;
         private static List<FacebookFeed> GetFeedResult()
         {
-            var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
-            FacebookClient fc = new FacebookClient(token);
-            fc.AppId = FbSettings.AppId;
-            fc.AppSecret = FbSettings.AppSecret;
-            var feedList = new List<FacebookFeed>();
-            dynamic feed = fc.Get("me/feed");
-            foreach (var f in feed.data)
+            if (feedList == null)
             {
-                feedList.Add(new FacebookFeed
+                try
                 {
-                    Name = f.name,
-                    Id = f.id,
-                    Caption = f.caption,
-                    Description = f.description,
-                    From = new FacebookUser { Name = f.from.name, Id = f.from.id },
-                    Link = f.link,
-                    Picture = f.picture
+                    var token = ConfigurationHelper.GetConfiguration(FbSettings.TokenKey);
+                    FacebookClient fc = new FacebookClient(token);
+                    fc.AppId = FbSettings.AppId;
+                    fc.AppSecret = FbSettings.AppSecret;
+                    feedList = new List<FacebookFeed>();
 
-                });
+                    dynamic feed = fc.Get("me/feed");
+
+                    foreach (var f in feed.data)
+                    {
+                        feedList.Add(new FacebookFeed
+                        {
+                            Name = f.name,
+                            Id = f.id,
+                            Caption = f.caption,
+                            Description = f.description,
+                            From = new FacebookUser { Name = f.from.name, Id = f.from.id },
+                            Link = f.link,
+                            Picture = f.picture
+
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+                lastUpdateTime = DateTime.UtcNow;
             }
             return feedList;
         }
