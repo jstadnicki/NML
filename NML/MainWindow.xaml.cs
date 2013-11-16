@@ -42,7 +42,19 @@
 
             // Displaying tray icon
             this.ShowTrayIcon();
+
+            this.Loaded += MainWindow_Loaded;
         }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            var workingArea = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            this.Width = workingArea.Width / 3;
+            this.Left = workingArea.Width - this.Width;
+            this.Top = workingArea.Top;
+            this.Height = workingArea.Bottom;
+        }
+        
 
         private void ShowTrayIcon()
         {
