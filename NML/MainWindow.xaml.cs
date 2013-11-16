@@ -81,7 +81,7 @@
             this.icon = new System.Windows.Forms.NotifyIcon();
             icon.Visible = true;
             icon.DoubleClick += this.TrayIconDoubleClick;
-            icon.Icon = new System.Drawing.Icon("nml.ico");
+            icon.Icon = new System.Drawing.Icon("Application.ico");
 
             var mi = new MenuItem { Name = "Lipa", Text = "Lipa" };
             mi.Click += mi_Click;

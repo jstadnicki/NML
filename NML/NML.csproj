@@ -194,9 +194,6 @@
     <Resource Include="Images\twitter.png" />
     <Resource Include="Images\gplus-16.png" />
     <Resource Include="Application.ico" />
-    <Content Include="nml.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NML.Core\NML.Core.csproj">
