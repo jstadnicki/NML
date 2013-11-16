@@ -12,7 +12,7 @@ namespace NML.Search.FilesSystem
         internal static IEnumerable<FileSearchResult> ExecuteQuery(string query)
         {
             var result = new List<FileSearchResult>();
-            var fileQuery = string.Format("SELECT System.ItemName, System.ItemUrl FROM SystemIndex WHERE System.FileName LIKE '{0}%'", query);
+            var fileQuery = string.Format("SELECT TOP 10 System.ItemName, System.ItemUrl FROM SystemIndex WHERE System.FileName LIKE '{0}%'", query);
 
             OleDbDataReader myDataReader = null;
             var myOleDbConnection = new OleDbConnection(connectionString);
