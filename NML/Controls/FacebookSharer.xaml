@@ -8,20 +8,18 @@
              d:DesignHeight="300" d:DesignWidth="300"
              MouseDown="FacebookSharer_OnMouseDown">
     <Grid>
-        <Image Source="..\Images\fb.png">
-            <Image.Style>
-                <Style TargetType="Image">
+        <Border BorderThickness="1">
+            <Border.Style>
+                <Style TargetType="Border">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=RootControl, Path=IsMouseOver}" Value="True">
-                            <Setter Property="BitmapEffect">
-                                <Setter.Value>
-                                    <OuterGlowBitmapEffect GlowColor="Red" GlowSize="10" />
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="BorderBrush" Value="{x:Static SystemColors.ActiveBorderBrush}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </Image.Style>
-        </Image> 
+            </Border.Style>
+            
+            <Image Source="..\Images\fb.png" />
+        </Border>
     </Grid>
 </UserControl>

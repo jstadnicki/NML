@@ -1,0 +1,11 @@
+﻿<Window x:Class="NML.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:NML.Controls"
+        Title="Settings" Height="620.301" Width="439.85">
+    <Grid>
+        <ScrollViewer>
+            <controls:SettingsDisplay x:Name="rdSearchResults"  ItemsSource="{Binding Results}"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

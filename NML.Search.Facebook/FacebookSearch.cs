@@ -67,6 +67,7 @@ namespace NML.Search.Facebook
                 }
                 catch
                 {
+                    friendsList = null;
                     return null;
                 }
             }
@@ -93,19 +94,20 @@ namespace NML.Search.Facebook
                     {
                         feedList.Add(new FacebookFeed
                         {
-                            Name = f.name,
+                            Name = f.name ?? string.Empty,
                             Id = f.id,
-                            Caption = f.caption,
-                            Description = f.description,
+                            Caption = f.caption ?? string.Empty,
+                            Description = f.description ?? string.Empty,
                             From = new FacebookUser { Name = f.from.name, Id = f.from.id },
-                            Link = f.link,
-                            Picture = f.picture
+                            Link = f.link ?? string.Empty,
+                            Picture = f.picture ?? string.Empty
 
                         });
                     }
                 }
                 catch
                 {
+                    feedList = null;
                     return null;
                 }
                 lastUpdateTime = DateTime.UtcNow;
@@ -134,6 +136,12 @@ namespace NML.Search.Facebook
         }
 
         public BitmapImage SearchIcon { get; private set; }
+
+
+        public string Name
+        {
+            get { return "Facebook"; }
+        }
 
         private BitmapImage GetSearchIcon()
         {

@@ -27,6 +27,8 @@
                 this.WindowState = System.Windows.WindowState.Normal;
 
             this.Activate();
+
+            tbSearch.SelectAll();
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -102,6 +104,12 @@
             this.Hide();
 #endif
 
+        }
+
+        private void buttonSettings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow sw = new SettingsWindow();
+            sw.ShowDialog();
         }
     }
 }

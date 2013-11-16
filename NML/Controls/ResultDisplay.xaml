@@ -96,7 +96,7 @@
                             </Label.Effect>
                         </Label>
                     </StackPanel>
-                    <ItemsControl>
+                    <ItemsControl ItemsSource="{Binding ResultList}">
                         <ItemsControl.Resources>
                             <DataTemplate DataType="{x:Type results:SearchTextResultListItem}">
                                 <Label Content="{Binding Text}" />
