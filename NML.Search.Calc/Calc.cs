@@ -9,17 +9,20 @@ namespace NML.Search.Calc
     {
         public ISearchResult Search(string phrase)
         {
-            var ex = new NCalc.Expression(phrase);
             var result = new TextSearchResult("Calculator");
 
-            try
+            if (!string.IsNullOrWhiteSpace(phrase))
             {
-                // TODO: allow sin, now only Sin works
-                result.Text = ex.Evaluate().ToString();
-            }
-            catch
-            {
-                result.Text = null;
+                var ex = new NCalc.Expression(phrase);
+                try
+                {
+                    // TODO: allow sin, now only Sin works
+                    result.Text = ex.Evaluate().ToString();
+                }
+                catch
+                {
+                    result.Text = null;
+                }
             }
 
             result.SearchIcon = GetSearchIcon();

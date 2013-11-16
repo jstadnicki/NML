@@ -48,6 +48,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,6 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\TwitterSharer.xaml.cs">
+      <DependentUpon>TwitterSharer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FacebookSharer.xaml.cs">
+      <DependentUpon>FacebookSharer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LinkDisplay.xaml.cs">
       <DependentUpon>LinkDisplay.xaml</DependentUpon>
     </Compile>
@@ -77,6 +84,14 @@
     </Compile>
     <Compile Include="Utils\KeyboardHandler.cs" />
     <Compile Include="Utils\VisibilityConverter.cs" />
+    <Page Include="Controls\TwitterSharer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FacebookSharer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\LinkDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\zoom.png" />
+    <Resource Include="Images\fb.png" />
+    <Resource Include="Images\twitter.png" />
     <Content Include="nml.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
