@@ -21,13 +21,18 @@
 
         private NotifyIcon icon;
 
+        private bool appexit;
+
         private void keyboardHandler_ShortcutPressed(object sender, EventArgs e)
         {
             if (this.WindowState == System.Windows.WindowState.Minimized)
+            {
                 this.WindowState = System.Windows.WindowState.Normal;
+            }
 
+            this.WindowState = WindowState.Normal;
+            this.Show();
             this.Activate();
-
             tbSearch.SelectAll();
         }
 
@@ -37,7 +42,7 @@
             {
                 this.Close();
             }
-        }   
+        }
 
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -48,7 +53,7 @@
         {
             this.InitializeComponent();
             this.DataContext = new MainWindowViewModel();
-            
+            this.Hide();
             // Registering shortcut
             keyboardHandler = new KeyboardHandler(this);
             keyboardHandler.ShortcutPressed += keyboardHandler_ShortcutPressed;
@@ -68,7 +73,7 @@
             this.Top = workingArea.Top;
             this.Height = Screen.PrimaryScreen.WorkingArea.Height;
         }
-        
+
 
         private void ShowTrayIcon()
         {
@@ -76,12 +81,22 @@
             icon.Visible = true;
             icon.DoubleClick += this.TrayIconDoubleClick;
             icon.Icon = new System.Drawing.Icon("nml.ico");
+
+            var mi = new MenuItem { Name = "Lipa", Text = "Lipa" };
+            mi.Click += mi_Click;
+            icon.ContextMenu = new ContextMenu(new[] { mi });
+        }
+
+        private void mi_Click(object sender, EventArgs e)
+        {
+            this.appexit = true;
+            this.Close();
         }
 
         private void TrayIconDoubleClick(object sender, System.EventArgs e)
         {
-            this.Show();
             this.WindowState = WindowState.Normal;
+            this.Show();
         }
 
         protected override void OnStateChanged(EventArgs e)
@@ -100,8 +115,15 @@
             base.OnClosing(e);
             this.icon.Visible = false;
 #else
-            e.Cancel = true;
-            this.Hide();
+            if (this.appexit)
+            {
+                base.OnClosing(e);
+            }
+            else
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
 #endif
 
         }
